@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="title">
+        {{title}}
+    </div>
+    <div class="welcome">
+        Welcome to {{title}}. For access to our amazing 5 GHz Wifi network follow the steps below.
+    </div>
+    <div class="instruction">
+        <div class="instruction-title">Step 1: Select your duration</a></div>
+        <div class="instruction-text">Select the duration of Wifi access you want by clicking the corresponding payment
+            button. This will take you to the QUID payment screen.</div>
+    </div>
+    <div class="instruction">
+        <div class="instruction-title">Step 2: Pay the required amount</div>
+        <div class="instruction-text">Login or signup to pay. Creating an account is fast and easy.</div>
+    </div>
+    <div class="instruction">
+        <div class="instruction-title">Step 3: Use the network</div>
+        <div class="instruction-text">Your browser will return you to our site to grant you access to the network.</div>
+    </div>
+    {{> quid}}
+    <div class="payment-options-list">
+        <div class="payment-option">
+            <div class="payment-option-description">10 minutes of Wifi Access</div>
+            <button id="payment-button" class="payment-button"
+                onclick="generateInvoiceAndForward(0.25, '10 minutes of Wifi Access')">CAD $0.25</button>
+            {{!-- <div class="payment-option-button">
+                <div class="quid-button" quid-amount="0.25" quid-currency="CAD" quid-product-id="WIFI10"
+                    quid-product-url="/authorize" quid-product-name="10 minutes of Wifi Access"
+                    quid-product-description="Kevin's Guest Wifi" quid-palette="blue" />
+            </div> --}}
+            {{!-- </div> --}}
+        </div>
+        <div class="payment-option">
+            <div class="payment-option-description">30 minutes of Wifi Access</div>
+            <button id="payment-button" class="payment-button"
+                onclick="generateInvoiceAndForward(0.50, '30 minutes of Wifi Access')">CAD $0.50</button>
+            {{!-- <div class="payment-option-button">
+            <div class="quid-button" quid-amount="0.55" quid-currency="CAD" quid-product-id="WIFI30"
+                quid-product-url="/authorize" quid-product-name="30 minutes of Wifi Access"
+                quid-product-description="Kevin's Guest Wifi" quid-palette="blue" />
+        </div> --}}
+            {{!-- </div> --}}
+        </div>
+        <div class="payment-option">
+            <div class="payment-option-description">1 hour of Wifi Access</div>
+            <button id="payment-button" class="payment-button"
+                onclick="generateInvoiceAndForward(0.75, '1 hour of Wifi Access')">CAD $0.75</button>
+            {{!-- <div class="payment-option-button">
+        <div class="quid-button" quid-amount="0.75" quid-currency="CAD" quid-product-id="WIFI60"
+            quid-product-url="/authorize" quid-product-name="1 hour of Wifi Access"
+            quid-product-description="Kevin's Guest Wifi" quid-palette="blue" />
+    </div> --}}
+            {{!-- </div> --}}
+        </div>
+    </div>
+</div>
