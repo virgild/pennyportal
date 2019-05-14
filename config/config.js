@@ -2,7 +2,7 @@ const config = {};
 
 // QUID settings
 // Hashed API secret for receipt verification
-config.secret = '';
+config.secret = 'KayWgGDVljfD8o/oomHIBzmVT4Bq/9ZGZ54+5LLFxFg=';
 
 // Captive Portal settings
 config.title = "Kev's Wifi Emporium";

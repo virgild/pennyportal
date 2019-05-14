@@ -6,9 +6,12 @@ const logger = require('morgan');
 const handlebars = require('express-handlebars');
 
 const indexRouter = require('./routes/index');
-const unifiRouter = require('./routes/unifi-routes');
+const wipiRouter = require('./routes/wipi-routes');
 
 const app = express();
+
+// sets port 3000 to default or unless otherwise specified in the environment
+app.set('port', process.env.PORT || 3000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,7 +24,7 @@ app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(indexRouter);
-app.use(unifiRouter);
+app.use(wipiRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
