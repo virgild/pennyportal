@@ -1,5 +1,11 @@
 // Staging API key
-const apiKey = 'kt-C5DYAVIS0INZVBL07EQS6IG5XMX1SA6E';
+// const apiKey = 'kt-C5DYAVIS0INZVBL07EQS6IG5XMX1SA6E'
+// const baseURL = 'https://app.qubit.sh/api/v1';
+// const merchantID = '';
+
+const apiKey = 'kp-K7SJ0GLXIXTCYDY4QR6JE0RX532QERJM';
+const baseURL = 'https://appqubit.sh/api/v1';
+const merchantID = 'M-JMGG73MNGXBG5Y3F';
 
 // eslint-disable-next-line
 function init() {
@@ -12,6 +18,7 @@ function generateInvoiceAndForward(purchaseAmount, purchaseName) {
   const requestCode = pathArray[pathArray.length - 1];
 
   const invoiceParams = {
+    merchantID,
     apiKey: apiKey.trim(),
     requestID: requestCode,
     amount: purchaseAmount,
@@ -20,25 +27,31 @@ function generateInvoiceAndForward(purchaseAmount, purchaseName) {
     productURL: '/authorize',
     productName: purchaseName,
     productDescription: purchaseName,
-    exchangeRates: '',
+    exchangeRates: null,
+    pin: '0000',
   };
 
   const api = axios.create({
-      baseURL: 'https://app.qubit.sh/api/v1',
-      timeout: 20000,
-      withCredentials: true, // required for CORS requests
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    baseURL,
+    timeout: 20000,
+    withCredentials: true, // required for CORS requests
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
 
-  api.post('/cors/invoices', invoiceParams)
-    .then(function (response) {
+  const currencyPairs = 'CAD/USD,USD/CAD,CAD';
+
+  api.get(`/currency/quotes?pairs=${currencyPairs}`)
+    .then((response) => {
+      invoiceParams.exchangeRates = response.data.data;
+      return api.post('/cors/invoices', invoiceParams);
+    })
+    .then((response) => {
       console.log(response);
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
     });
-
 }
